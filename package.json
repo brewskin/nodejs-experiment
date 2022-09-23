@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "finalhandler": "^1.2.0",
+    "router": "^1.3.7"
+  },
+  "name": "nodejs-experiment",
+  "description": "Attempt to create a NodeJS server from scratch",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brewskin/nodejs-experiment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brewskin/nodejs-experiment/issues"
+  },
+  "homepage": "https://github.com/brewskin/nodejs-experiment#readme"
+}

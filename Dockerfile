@@ -2,6 +2,7 @@
 FROM node:18
 WORKDIR .
 COPY . .
+RUN ["npm", ""]
 CMD ["node", "app.js"]
 
 # replace this with your application's default port

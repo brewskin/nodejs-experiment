@@ -1,15 +1,26 @@
-const http = require('http');
+var finalhandler = require('finalhandler')
+var http = require('http')
+var Router = require('router')
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const port = 3000
 
-const server = http.createServer((req, res) => {
-    console.log(`I GOT YOUR REQUEST!!!!`);
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
-});
+var router = Router()
+// routes
+var home = router.route('/')
+var newRoute = router.route('/testing123')
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+home.get(function (req, res) {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('Hello World!')
+})
+
+newRoute.get(function (req, res) {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.end('Welcome to the Testing World!')
+})
+
+var server = http.createServer(function (req, res) {
+    router(req, res, finalhandler(req, res))
+})
+
+server.listen(port, "localhost")
