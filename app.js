@@ -13,11 +13,11 @@ var newRoute = router.route('/projects.html')
 
 
 function handleHome(req, res) {
-    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    var payload = '<html> <head> <script src=\"https://unpkg.com/react@17/umd/react.development.js\"></script> <script src=\"https://unpkg.com/react-dom@17/umd/react-dom.development.js\"></script> <script src=\"https://unpkg.com/babel-standalone@7.10.0/babel.min.js\"></script> </head> <body> <div id=\"root\"></div> <script type=\"text/babel\"> %s </script> </body> </html>'
-    var reactFile = fs.readFileSync('square.js')
-    res.write('OMFG')
-    res.write(utils.format(payload, reactFile))
+    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    var reactFile = fs.readFileSync('square.js').toString()
+    var indexFile = fs.readFileSync('index.html').toString()
+    var payload = utils.format(indexFile, reactFile)
+    res.write(payload)
     res.end()
 }
 home.get(handleHome)
