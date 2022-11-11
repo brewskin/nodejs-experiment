@@ -2,6 +2,7 @@ var finalhandler = require('finalhandler')
 var http = require('http')
 var Router = require('router')
 var fs = require('fs')
+var utils = require('util')
 
 const port = parseInt(process.env.PORT) || 8080;
 
@@ -12,32 +13,12 @@ var newRoute = router.route('/projects.html')
 
 
 function handleHome(req, res) {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    // fs.createReadStream('index.html').pipe(res)
-    var str = "We're noobs at coding, but we're on our way up!"
-    let ranString = rollIt()
-    res.write(str)
-
-    // const buf = Buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64')
-
-    // // Writing the buffer data.
-    // res.write(buf, 'utf8', function() {
-    //     console.log("Writing Buffer Data...")
-    // });
-
-    // // Creating buffer
-    // const buff = Buffer.from(' hello world', 'utf8')
-
-    // // Writing the buffer data.
-    // res.write(buff, 'utf8', function () {
-    //     console.log("Writing Buffer Data...")
-    // })
-
-    // Prints Output on the browser in response
-    res.write('<br></br>')
-    res.write(ranString)
-    res.write('<br></br>')
-    res.end(' ok')
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    var payload = '<html> <head> <script src=\"https://unpkg.com/react@17/umd/react.development.js\"></script> <script src=\"https://unpkg.com/react-dom@17/umd/react-dom.development.js\"></script> <script src=\"https://unpkg.com/babel-standalone@7.10.0/babel.min.js\"></script> </head> <body> <div id=\"root\"></div> <script type=\"text/babel\"> %s </script> </body> </html>'
+    var reactFile = fs.readFileSync('square.js')
+    res.write('OMFG')
+    res.write(utils.format(payload, reactFile))
+    res.end()
 }
 home.get(handleHome)
 newRoute.get(function (req, res) {
