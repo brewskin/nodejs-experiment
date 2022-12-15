@@ -1,5 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+
+class Judgement extends React.Component {
+
+}
 
 function App() {
   return (
