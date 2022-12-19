@@ -11,10 +11,11 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "clean": "docker-compose -f docker_compose.yml --profile platform down",
-    "platform": "docker-compose -f docker_compose.yml --profile platform up -d && node db-seed.js",
-    "app": "node app.js",
-    "start": "npm run clean && npm run platform && npm run app"
+    "clean": "docker-compose --profile app --profile platform down && docker-compose rm -f",
+    "platform": "docker-compose --profile platform up -d --build && node db-seed.js",
+    "app": "docker-compose --profile app up -d --build",
+    "run": "npm run clean && npm run platform && npm run app",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

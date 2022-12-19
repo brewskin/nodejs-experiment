@@ -6,7 +6,7 @@ const judgements = require('./judgements');
 const port = parseInt(process.env.PORT) || 8080;
 
 app.get('/', (req, res) => {
-    res.send('Hello New World!');
+    res.send('Hello And Welcome to My World!');
 });
 app.use((req, res, next) => {
     res.contentType('application/json')
