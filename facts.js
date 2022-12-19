@@ -6,8 +6,14 @@ const router = express.Router();
 
 // define the home page route
 router.get('/', (req, res) => {
-    repo.DoSomething()
-    res.status(400).json(err.notImplemented).end();
+    repo.DoSomething().then(function (doc) {
+        res.status(200).json(doc).end();
+    },
+        function (reason) {
+            res.status(500).json(err.internalError).end();
+        }
+    )
+
 });
 
 // define the home page route

@@ -6,32 +6,17 @@ const client = new MongoClient(repoUrl);
 var connectionPromise = client.connect();
 connectionPromise.then(
     function (c) {
-        console.log('database connection was successful');
-        // c.insertOne({
-        //     name: 'thingy',
-        //     kind: 'fish'
-        // });
+        console.log('repo database connection was successful');
     },
     function (reason) {
-        console.log('failed to connect to database');
-        //console.log(reason);
+        console.log('repo failed to connect to database');
+        console.log(reason);
     }
 )
 
 function DoSomething() {
     console.log('DoSomething gosh darns')
-    // interface Pet {
-    //     name: string;
-    //     kind: 'dog' | 'cat' | 'fish';
-    // }
-
-    // const pets = client.db().collection < Pet > ('pets');
-    // const pets = client.db().collection('pets');
-
-    // const petCursor = pets.find();
-
-    // for await (const pet of petCursor) {
-    //     console.log(`${pet.name} is a ${pet.kind}!`);
-    // }
+    const factCollection = client.db('nodejs-experiment').collection('facts');
+    return factCollection.find({}).toArray();
 }
 module.exports.DoSomething = DoSomething;
