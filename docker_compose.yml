@@ -2,13 +2,19 @@ version: "3.8"
 
 services:
   backend:
+    container_name: backend
     image: backend
     ports:
       - 8080:8080
     environment:
       PORT: 8080
-    
+    profiles:
+      - app
+
   repo:
+    container_name: repo
     image: mongo
     ports:
       - 27017:27017
+    profiles:
+      - platform
