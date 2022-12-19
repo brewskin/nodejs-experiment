@@ -1,26 +1,37 @@
-const { Mongo } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
-client = Mongo()
-const repoUrl = parseInt(process.env.MONGO_HOST) || "mongodb://127.0.0.1:27017";
+const repoUrl = parseInt(process.env.MONGO_HOST) || "mongodb://host.docker.internal:27017";
 const client = new MongoClient(repoUrl);
-
-
+// client.connect();
+var connectionPromise = client.connect();
+connectionPromise.then(
+    function (c) {
+        console.log('database connection was successful');
+        // c.insertOne({
+        //     name: 'thingy',
+        //     kind: 'fish'
+        // });
+    },
+    function (reason) {
+        console.log('failed to connect to database');
+        //console.log(reason);
+    }
+)
 
 function DoSomething() {
+    console.log('DoSomething gosh darns')
+    // interface Pet {
+    //     name: string;
+    //     kind: 'dog' | 'cat' | 'fish';
+    // }
 
-    await client.connect();
+    // const pets = client.db().collection < Pet > ('pets');
+    // const pets = client.db().collection('pets');
 
-    interface Pet {
-        name: string;
-        kind: 'dog' | 'cat' | 'fish';
-    }
+    // const petCursor = pets.find();
 
-    const pets = client.db().collection < Pet > ('pets');
-
-    const petCursor = pets.find();
-
-    for await (const pet of petCursor) {
-        console.log(`${pet.name} is a ${pet.kind}!`);
-    }
+    // for await (const pet of petCursor) {
+    //     console.log(`${pet.name} is a ${pet.kind}!`);
+    // }
 }
 module.exports.DoSomething = DoSomething;
