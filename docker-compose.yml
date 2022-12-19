@@ -3,11 +3,23 @@ version: "3.8"
 services:
   backend:
     container_name: backend
-    image: backend
+    build: .
     ports:
       - 8080:8080
     environment:
       PORT: 8080
+    profiles:
+      - app
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./nodejs-experiment-fe
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./nodejs-experiment-fe/:/frontend
     profiles:
       - app
 

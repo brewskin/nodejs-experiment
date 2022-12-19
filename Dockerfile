@@ -1,6 +1,6 @@
 # specify the node base image with your desired version node:<version>
 FROM node:18
-WORKDIR .
+WORKDIR /
 COPY . .
 RUN npm i
 CMD npm start
