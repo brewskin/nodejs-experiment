@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  backend:
+    image: backend
+    ports:
+      - 8080:8080
+    environment:
+      PORT: 8080
+    
+  repo:
+    image: mongo
+    ports:
+      - 27017:27017
