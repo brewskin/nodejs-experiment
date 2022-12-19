@@ -7,7 +7,6 @@ function successfulCollectionCreation(collection) {
     console.log('created collection')
     // console.log(collection)
     collection.insertOne({
-        '_id': 1,
         'value': 'this is a fact from the database',
     }).then(
         function (insert) {

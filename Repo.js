@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const repoUrl = parseInt(process.env.MONGO_HOST) || "mongodb://host.docker.internal:27017";
 const client = new MongoClient(repoUrl);
@@ -14,9 +14,19 @@ connectionPromise.then(
     }
 )
 
-function DoSomething() {
-    console.log('DoSomething gosh darns')
+function GetAllFacts() {
+    console.log('getting all facts')
     const factCollection = client.db('nodejs-experiment').collection('facts');
     return factCollection.find({}).toArray();
 }
-module.exports.DoSomething = DoSomething;
+
+function GetFact(id) {
+    searchID = new ObjectId(id)
+    console.log('getting fact: ', searchID.toString())
+
+    const factCollection = client.db('nodejs-experiment').collection('facts');
+    return factCollection.findOne({ "_id": searchID });
+}
+
+module.exports.GetAllFacts = GetAllFacts;
+module.exports.GetFact = GetFact;
