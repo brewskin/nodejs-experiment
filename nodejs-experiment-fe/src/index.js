@@ -9,6 +9,7 @@ root.render(
   <React.StrictMode>
     <Judgement
       user='this fucking guy'
+      value='Argument number 1'
     />
   </React.StrictMode>
 );

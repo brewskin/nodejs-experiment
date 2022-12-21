@@ -13,8 +13,9 @@
   "scripts": {
     "clean": "docker-compose --profile app --profile platform down && docker-compose rm -f",
     "platform": "docker-compose --profile platform up -d --build && node db-seed.js",
-    "app": "docker-compose --profile app up -d --build",
+    "app": "docker-compose --profile app stop && docker-compose rm -f && docker-compose --profile app up -d --build",
     "run": "npm run clean && npm run platform && npm run app",
+    "fe": "docker-compose --profile fe up -d --build",
     "start": "node app.js"
   },
   "repository": {

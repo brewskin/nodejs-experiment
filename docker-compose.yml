@@ -10,18 +10,16 @@ services:
       PORT: 8080
     profiles:
       - app
+      - be
 
   frontend:
     container_name: frontend
-    build:
-      context: ./nodejs-experiment-fe
-      dockerfile: Dockerfile
+    build: ./nodejs-experiment-fe
     ports:
       - 80:80
-    volumes:
-      - ./nodejs-experiment-fe/:/frontend
     profiles:
       - app
+      - fe
 
   repo:
     container_name: repo
