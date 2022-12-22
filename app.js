@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use('/facts', facts);
+app.use('/topics', facts);
 app.use('/judgements', judgements);
 
 app.listen(port, () => {

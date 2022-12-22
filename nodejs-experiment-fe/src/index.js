@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Judgement from './Judgement';
+import TopicList from './components/Topic/TopicList';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Judgement
+    <TopicList
       user='this fucking guy'
-      value='Argument number 1'
+      topics={['Argument number 1', 'Arg 2', 'Argguuumeee 3']}
     />
   </React.StrictMode>
 );
